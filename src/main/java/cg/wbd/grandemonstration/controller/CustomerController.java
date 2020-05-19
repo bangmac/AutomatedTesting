@@ -23,6 +23,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("customers")
 public class CustomerController {
+
     @Autowired
     private CustomerService customerService;
 
@@ -36,7 +37,7 @@ public class CustomerController {
 
     @GetMapping
     public ModelAndView showList(Optional<String> s, Pageable pageInfo) {
-        ModelAndView modelAndView = new ModelAndView("customers/list");
+        ModelAndView modelAndView = new ModelAndView("customers/browse");
         Page<Customer> customers = s.isPresent() ? search(s, pageInfo) : getPage(pageInfo);
         modelAndView.addObject("keyword", s.orElse(null));
         modelAndView.addObject("customers", customers);
